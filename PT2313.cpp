@@ -15,7 +15,7 @@
 #define PT2313RegBassContol         0x60
 #define PT2313RegBassContolMask     0x0F
 #define PT2313RegTrebleContol       0x70
-#define PT2313RegBassContolMask     0x0F
+#define PT2313RegTrebleContolMask     0x0F
 
 #define VOLUMEMAX		(0x3F)
 #define ATTENUATIONMAX	(0x1F)
@@ -215,8 +215,8 @@ uint8_t PT2313::setTreble(int8_t treble)
   uint8_t data = 0;
   data |= treble & 0x7;
   data |= negative ? 0 : (1 << 3);
-  data = data & PT2313RegBassContolMask;  //make shure no data is where the register is selected
-  data = data | PT2313RegBassContol;      //set the register bits
+  data = data & PT2313RegTrebleContolMask;  //make shure no data is where the register is selected
+  data = data | PT2313RegTrebleContol;      //set the register bits
   
   return sendData(data); 
 }
